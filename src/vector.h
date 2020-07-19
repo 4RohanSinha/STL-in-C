@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//private members in a struct: https://stackoverflow.com/questions/3824329/partitioning-struct-into-private-and-public-sections
+struct vectorPrivateMembers;
+
 typedef struct vector {
-	int* elements;
-	int size_;
+	struct vectorPrivateMembers* privateVM;
 	int (*size)(struct vector* this);
 	int (*get)(struct vector* this, int index);
 	void (*set)(struct vector* this, int index, int newVal);
