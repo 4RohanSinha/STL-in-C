@@ -15,6 +15,7 @@ static T TYPE_NAME(Vector__get) (TYPE_NAME(vector)* this, int index) {
 	if (index < this->size(this))
 		return this->privateVM->elements[index];
 	else {
+		//TODO: define functions for each type to return errors
 		printf("Error: index %i is out of bounds in vector of length %i. Returning -1.\n", index, this->size(this));
 		return -1;
 	}	
@@ -76,10 +77,20 @@ static void TYPE_NAME(Vector__erase) (TYPE_NAME(vector)* this, int index) {
 	this->privateVM->elements = realloc(this->privateVM->elements, this->privateVM->size_*sizeof(T));
 }
 
+static void TYPE_NAME(Vector__assign) (TYPE_NAME(vector)* this, T* data) {
+	if (this->privateVM->elements != NULL)
+		free(this->privateVM->elements);
+	this->privateVM->elements = data;
+}
+
+static T* TYPE_NAME(Vector__data) (TYPE_NAME(vector)* this) {
+	return this->privateVM->elements;
+}
+
 TYPE_NAME(vector)* TYPE_NAME(new_vector) () {
 	TYPE_NAME(vector)* vectorRes = malloc(sizeof(TYPE_NAME(vector)));
 	vectorRes->privateVM = malloc(sizeof(struct TYPE_NAME(vectorPrivateMembers)));
-	vectorRes->privateVM->elements = malloc(sizeof(T) * 0);
+	vectorRes->privateVM->elements = malloc(sizeof(T) * 1);
 	vectorRes->privateVM->size_ = 0;
 	vectorRes->size = TYPE_NAME(Vector__size);
 	vectorRes->get = TYPE_NAME(Vector__get);
@@ -91,9 +102,12 @@ TYPE_NAME(vector)* TYPE_NAME(new_vector) () {
 	vectorRes->clear = TYPE_NAME(Vector__clear);
 	vectorRes->insert = TYPE_NAME(Vector__insert);
 	vectorRes->erase = TYPE_NAME(Vector__erase);
+	vectorRes->assign = TYPE_NAME(Vector__assign);
+	vectorRes->data = TYPE_NAME(Vector__data);
 }
 
 void TYPE_NAME(delete_vector) (TYPE_NAME(vector)* vector) {
+	
 	if (vector->privateVM->elements != NULL)
 		free(vector->privateVM->elements);
 	

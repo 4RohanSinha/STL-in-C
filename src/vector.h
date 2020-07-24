@@ -15,6 +15,8 @@ typedef struct TYPE_NAME(c_vector) {
 	void (*clear)(struct TYPE_NAME(c_vector)* this);
 	void (*insert)(struct TYPE_NAME(c_vector)* this, int index, T newVal);
 	void (*erase)(struct TYPE_NAME(c_vector)* this, int index);
+	void (*assign)(struct TYPE_NAME(c_vector)* this, T* data);
+	T* (*data)(struct TYPE_NAME(c_vector)* this);
 } TYPE_NAME(vector);
 
 TYPE_NAME(vector)* TYPE_NAME(new_vector)();
