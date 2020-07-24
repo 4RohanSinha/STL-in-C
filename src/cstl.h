@@ -1,6 +1,6 @@
 //using templates in C: https://stackoverflow.com/questions/10950828/simulation-of-templates-in-c-for-a-queue-data-type
 #ifndef CSTL_H
-#define CSSTL_H
+#define CSTL_H
 
 #include <stdio.h>
 #include <stdlib.h>
