@@ -2,7 +2,7 @@
 
 This project aims to create a library similar to C++'s STL for C.
 
-Note that this is a work in progress. As of the last commit, basic vector implementations have been added.
+Note: this is a work in progress. As of the last commit, basic vector implementations have been added.
 
 ## Dependencies
 
